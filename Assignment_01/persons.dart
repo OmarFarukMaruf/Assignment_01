@@ -1,25 +1,38 @@
-import 'person.dart';
+
+
+abstract class Role {
+  void displayRole();
+}
+
+class Person implements Role {
+  String? name;
+  int? age;
+  String? address;
+  @override
+  void displayRole() {
+    // TODO: implement displayRole
+  }
+}
 
 class Student extends Person {
-  int id;
-  double grade;
-  List<double> courseScores;
-  Student(super.name, super.age, super.address, this.id, this.grade,
-      this.courseScores);
+  int? id;
+  double? grade;
+  List<double>? courseScores;
+
   @override
   void displayRole() {
     print("Role: Student");
   }
-
   String avgScore() {
     double sum = 0.0;
-    for (double score in courseScores) {
+    for (double score in courseScores!) {
       sum += score;
     }
-    return (sum / courseScores.length).toStringAsFixed(2);
+    return (sum / courseScores!.length).toStringAsFixed(2);
   }
+  
 
-  void studentDetails() {
+  void studentDisplay() {
     displayRole();
     print('Name: $name');
     print('Age: $age');
@@ -29,11 +42,8 @@ class Student extends Person {
 }
 
 class Teacher extends Person {
-  int teacherID;
-  List<String> coursesTaught;
-
-  Teacher(
-      super.name, this.teacherID, super.age, super.address, this.coursesTaught);
+  int? teacherID;
+  List<String>? coursesTaught;
 
   @override
   void displayRole() {
@@ -41,7 +51,7 @@ class Teacher extends Person {
   }
 
   void displayCourse() {
-    for (String course in coursesTaught) {
+    for (String course in coursesTaught!) {
       print("-$course");
     }
   }
